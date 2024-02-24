@@ -525,6 +525,8 @@ section {
   overflow: hidden;
   width: 100%;
   height: 100vh;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
 }
 
 .back-glitch img {
@@ -684,20 +686,51 @@ section {
 #big-button button {
   width: 15rem;
   height: 5rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 3s;
+}
+
+@keyframes fadeIn  {
+  to {
+    opacity: 1;
+  }
 }
 
 .nav-buttons {
-  width: 100%;
+  /* width: 100%; */
   text-align: center;
+  margin-top: 20px;
+  z-index: 10;
+  background-color: transparent;
+
+  /* new code */
+  padding: 15px;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: -800px;
+  left: 0;
+  animation: slideDown 3s ease-in-out forwards;
+}
+
+/* new code */
+@keyframes slideDown {
+  to {
+    top: 50px; /* Adjust this value to create more space */
+  }
+}
+
+.nav-buttons.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .glitch-buttons {
-  background: #333333;
+  background: transparent;
   display: inline-block;
   margin: 10px 1%;
-  
 }
-
 
 .glitch-buttons button {
   padding: 10px 30px;
@@ -707,8 +740,8 @@ section {
   background-color: transparent;
   position: relative;
   z-index: 5;
-  overflow: hidden;
-  width: 13rem;
+  width: 200px;
+  transition: transform 0.3s ease-in-out;
 }
 
 button,
@@ -720,6 +753,10 @@ button::after {
   background-color: transparent;
   border: 2px solid #fff;
 }
+
+/* .hidden {
+  display: none;
+}  */
 
 .glitch-buttons button::after {
   content: '';
@@ -838,4 +875,13 @@ button:hover {
     clip-path: var(--mov1);
     transform: translate(0);
   }
+}
+
+.back-glitch.show {
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+}
+
+.nav-buttons.show .glitch-buttons button {
+  transform: translate(0);
 }
